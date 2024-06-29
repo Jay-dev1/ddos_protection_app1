@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "103904022357",
+    "project_id": "ddosprotectionapp",
+    "storage_bucket": "ddosprotectionapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103904022357:android:21e3b2db43faae8611e9dc",
+        "android_client_info": {
+          "package_name": "com.example.ddos_protection_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdBVM1YnxwyOTpGfR26Psi0fbZa031pIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
