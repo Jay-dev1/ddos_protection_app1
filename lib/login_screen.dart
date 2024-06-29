@@ -1,52 +1,34 @@
+import 'package:ddos_protection_app/services/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  Future<void> login() async {
-    final String email = _emailController.text.trim();
-    final String password = _passwordController.text.trim();
-
-    final response = await http.post(
-      Uri.parse('https://your-vercel-app.vercel.app/api/login'),
-      body: {'email': email, 'password': password},
-    );
-
-    if (response.statusCode == 200) {
-      print('Login successful');
-    } else {
-      print('Login failed');
-    }
-  }
+class LoginScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
+      appBar: AppBar(title: Text('Login')),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              controller: _emailController,
+              controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
-              controller: _passwordController,
+              controller: passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
+            SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: login,
+              onPressed: () {
+                // Call loginUser function when Login button is pressed
+                loginUser(emailController.text.trim(), passwordController.text.trim());
+              },
               child: Text('Login'),
             ),
           ],

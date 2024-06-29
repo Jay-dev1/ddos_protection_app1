@@ -1,52 +1,34 @@
+import 'package:ddos_protection_app/services/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-class RegistrationScreen extends StatefulWidget {
-  @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
-}
-
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  Future<void> register() async {
-    final String email = _emailController.text.trim();
-    final String password = _passwordController.text.trim();
-
-    final response = await http.post(
-      Uri.parse('https://your-vercel-app.vercel.app/api/register'),
-      body: {'email': email, 'password': password},
-    );
-
-    if (response.statusCode == 200) {
-      print('Registration successful');
-    } else {
-      print('Registration failed');
-    }
-  }
+class RegistrationScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
+      appBar: AppBar(title: Text('Registration')),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              controller: _emailController,
+              controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
-              controller: _passwordController,
+              controller: passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
+            SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: register,
+              onPressed: () {
+                // Call registerUser function when Register button is pressed
+                registerUser(emailController.text.trim(), passwordController.text.trim());
+              },
               child: Text('Register'),
             ),
           ],
