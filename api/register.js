@@ -1,10 +1,18 @@
-export default async function handler(req, res) {
-    if (req.method === 'POST') {
-      const { email, password } = req.body;
-      // Add your registration logic here (e.g., save to database, validate inputs)
-      res.status(200).json({ message: 'Registration successful' });
-    } else {
-      res.status(405).json({ message: 'Method not allowed' });
-    }
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+exports.registerUser = functions.https.onRequest(async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const userRecord = await admin.auth().createUser({
+      email,
+      password,
+    });
+
+    res.status(201).send(userRecord);
+  } catch (error) {
+    res.status(400).send(error.message);
   }
-  
+});

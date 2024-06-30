@@ -1,0 +1,13 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2023,
+    "sourceType": "module",
+    "requireConfigFile": false
+  },
+  "plugins": ["import"],
+  "rules": {
+    "constructor-super": "error"
+    // Other rules...
+  }
+}
