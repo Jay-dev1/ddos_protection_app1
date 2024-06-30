@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: LoginUserScreen(),
       routes: {
-        '/login': (context) => LoginScreen(),
-        '/register': (context) => RegistrationScreen(),
+        '/login': (context) => LoginUserScreen(),
+        '/register': (context) => RegisterUserScreen(),
       },
     );
   }
